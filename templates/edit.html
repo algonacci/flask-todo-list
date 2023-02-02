@@ -11,20 +11,16 @@
     <div class="container">
       <h1>To Do List</h1>
       <div id="newtask">
-        <form action="/" method="post">
-          <input type="text" name="todo" placeholder="Add Tasks" />
+        {% for todo in data %}
+        <form action="/update/{{ todo[0] }}" method="post">
+          <input
+            type="text"
+            name="todo"
+            placeholder="Add Tasks"
+            value="{{ todo[1] }}"
+          />
           <input id="push" type="submit" value="Add Task" />
         </form>
-      </div>
-      <div id="tasks">
-        {% for todo in data %}
-        <p class="todo">{{ todo[1] }}</p>
-        <div>
-          <a href="/edit/{{ todo[0] }}">Edit</a>
-          <form action="/delete/{{ todo[0] }}" method="POST">
-            <input type="submit" value="Delete" />
-          </form>
-        </div>
         {% endfor %}
       </div>
     </div>
